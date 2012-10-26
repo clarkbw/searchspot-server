@@ -1,0 +1,61 @@
+body {
+  color: #221912;
+}
+#page {
+  background-color: #F5F5F5;
+  padding: 20px;
+}
+#title {
+  text-align: center;
+  padding: 60px 0 100px 0;
+}
+#title input {
+  color: #140B04;
+}
+.orange {
+  color: #DD4715;
+  font-size: x-large;
+}
+.grey {
+  color: #7C7C7C;
+}
+#search {
+  font-size: 40px;
+  text-align: center;
+  height: 44px;
+}
+#pie {
+  color: #fff;
+  background-color: #838383;
+  color: #F5F5F5;
+  width: 500px;
+  text-align: center;
+}
+svg {
+  font: 10px sans-serif;
+}
+
+text.title {
+  font: 300 78px Helvetica Neue;
+  fill: #666;
+}
+
+rect {
+  fill-opacity: .2;
+  fill: #e377c2;
+}
+
+rect:first-child {
+  fill: #1f77b4;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}

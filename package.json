@@ -5,11 +5,14 @@
     "type": "git",
     "url": "https://github.com/clarkbw/searchspot.git"
   },
+  "scripts": {
+    "start": "node server"
+  },
   "dependencies": {
-    "express": ">=2.5.9",
-    "ejs" : "0.7.1",
-    "mongoose": ">=2.7.1",
-    "moment" : "1.6.2"
+    "express": "3.0.0rc3",
+    "ejs" : "0.8.2",
+    "mongoose": "3.1.0",
+    "moment" : "1.7.0"
   },
   "engine": {
     "node": "0.6.7"

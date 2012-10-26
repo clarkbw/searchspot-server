@@ -1,6 +1,15 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true,
+  strict:true, undef:true, curly:true, devel:true, node:true, boss : true,
+  indent:2, maxerr:50, globalstrict:true, nomen:false, white:true, newcap:true */
+
+"use strict";
+
 var MODEL_NAME = "SearchEngine";
 var URL = require("url");
-module.exports = function(mongoose) {
+module.exports = function (mongoose) {
   var Schema = mongoose.Schema,
       SearchEngine;
 
@@ -32,11 +41,11 @@ module.exports = function(mongoose) {
     },
     queryURLHTTPS : {
       type : Boolean,
-      default: false
+      "default": false
     },
     queryGeoLocationExtension : {
       type : Boolean,
-      default : false
+      "default" : false
     },
     suggestionURL : {
       type : String,
@@ -44,11 +53,11 @@ module.exports = function(mongoose) {
     },
     suggestionURLHTTPS : {
       type : Boolean,
-      default: false
+      "default": false
     },
     suggestGeoLocationExtension : {
       type : Boolean,
-      default : false
+      "default" : false
     },
     icon : {
       type : String,
@@ -56,12 +65,12 @@ module.exports = function(mongoose) {
     },
     added : {
       type : Date,
-      default: Date.now,
+      "default": Date.now,
       required : true
     },
     used_count : {
       type : Number,
-      default: 0,
+      "default": 0,
       required : true
     }
   });
@@ -69,7 +78,7 @@ module.exports = function(mongoose) {
   SearchEngine.pre('save', function (next) {
 
     function hasGeoLocalExt(url) {
-      var reg = /{geo:/g;
+      var reg = /\{geo:/g;
       return reg.test(url);
     }
 
@@ -87,24 +96,24 @@ module.exports = function(mongoose) {
   });
 
   SearchEngine.methods.equalsObject = function equals(obj) {
-    return (( this.url == obj.url || this.url == obj.siteURL ) &&
-              this.name == obj.name &&
-              this.queryURL == obj.queryURL &&
-              this.suggestionURL == obj.suggestionURL &&
-              this.icon == obj.icon);
-  }
+    return ((this.url === obj.url || this.url === obj.siteURL) &&
+             this.name === obj.name &&
+             this.queryURL === obj.queryURL &&
+             this.suggestionURL === obj.suggestionURL &&
+             this.icon === obj.icon);
+  };
 
   SearchEngine.statics.findGeoLocation = function findGeoLocation(callback) {
-    return this.find({$or : [{ queryGeoLocationExtension : true },{ suggestGeoLocationExtension : true }]}).sort({used_count : -1}).exec(callback);
-  }
+    return this.find({$or : [{ queryGeoLocationExtension : true }, { suggestGeoLocationExtension : true }]}).sort({used_count : -1}).exec(callback);
+  };
 
   SearchEngine.statics.findHttps = function findHttps(callback) {
-    return this.find({$or : [{ queryURLHTTPS : true },{ suggestionURLHTTPS : true }]}).sort({used_count : -1}).exec(callback);
-  }
+    return this.find({$or : [{ queryURLHTTPS : true }, { suggestionURLHTTPS : true }]}).sort({used_count : -1}).exec(callback);
+  };
 
   SearchEngine.statics.create = function create(obj) {
       var Model = mongoose.model(MODEL_NAME, SearchEngine);
-      var searchengine = new Model({ url : obj.url || obj.id || obj.siteURL,
+      var searchengine = new Model({ url : obj.id,
                                      name: obj.name,
                                      siteURL : obj.siteURL,
                                      queryURL : obj.queryURL,
@@ -112,7 +121,7 @@ module.exports = function(mongoose) {
                                      icon : obj.icon
                                   });
       return searchengine;
-  }
+    };
 
   return mongoose.model(MODEL_NAME, SearchEngine);
-}
+};
