@@ -1,5 +1,7 @@
 ## My Development Setup
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/clarkbw/searchspot-server.svg)](https://greenkeeper.io/)
+
 [node](https://github.com/joyent/node)
 ``brew install node``
 
